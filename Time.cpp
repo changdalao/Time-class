@@ -8,12 +8,12 @@ private:
 	int _minute;
 	int _sec;
 public:
-	Time(int, int, int);//È«È±Ê¡¹¹Ôìº¯Êı
-	Time(Time& t);//¿½±´¹¹Ôìº¯Êı
-	~Time();//Îö¹¹º¯Êı
-	void operator+(Time& t);//Ê±¼äµÄ¼Ó·¨
-	void operator-(Time& t);//Ê±¼äµÄ¼õ·¨
-	void Show();//ÏÔÊ¾º¯Êı
+	Time(int, int, int);//å…¨ç¼ºçœæ„é€ å‡½æ•°
+	Time(Time& t);//æ‹·è´æ„é€ å‡½æ•°
+	~Time();//ææ„å‡½æ•°
+	void operator+(Time& t);//æ—¶é—´çš„åŠ æ³•
+	void operator-(Time& t);//æ—¶é—´çš„å‡æ³•
+	void Show();//æ˜¾ç¤ºå‡½æ•°
 };
 
 Time::Time(int hour = 24, int minute = 0, int sec = 0)
@@ -21,21 +21,21 @@ Time::Time(int hour = 24, int minute = 0, int sec = 0)
 	_hour = hour;
 	_minute = minute;
 	_sec = sec;
-	//cout << "µ÷ÓÃÁË¹¹Ôìº¯Êı" << endl;
+	//cout << "è°ƒç”¨äº†æ„é€ å‡½æ•°" << endl;
 }
 Time::Time(Time& t)
 {
 	_hour = t._hour;
 	_minute = t._minute;
 	_sec = t._sec;
-	cout << "µ÷ÓÃÁË¿½±´¹¹Ôìº¯Êı" << endl;
+	cout << "è°ƒç”¨äº†æ‹·è´æ„é€ å‡½æ•°" << endl;
 }
 Time::~Time()
 {
-	cout << "µ÷ÓÃÁËÎö¹¹º¯Êı" << endl;
+	cout << "è°ƒç”¨äº†ææ„å‡½æ•°" << endl;
 }
 void Time::Show()
-{
+{ 
 	cout << _hour << ":" << _minute << ":" << _sec << endl;
 }
 void Time::operator+(Time& t)
@@ -71,15 +71,15 @@ void Time::operator-(Time& t)
 	_sec -= t._sec;
 	if (_sec < 0)
 	{
-		int pos = -_sec;//½«¸ºÊı×ªÎªÕı£¬·½±ã¼ÆËã
-		int tmp = pos / 60;//·½±ã¼ÆËã·ÖÖÓ
+		int pos = -_sec;//å°†è´Ÿæ•°è½¬ä¸ºæ­£ï¼Œæ–¹ä¾¿è®¡ç®—
+		int tmp = pos / 60;//æ–¹ä¾¿è®¡ç®—åˆ†é’Ÿ
 		if (pos > 60)
 		{
 			_sec = pos - 60;
 		}
 		else
 			_sec = 60 - pos;
-		//Ãë´¦ÀíÍêºó£¬¿ÉÄÜÓ°Ïìµ½·ÖÖÓ£¬´¦Àí·ÖÖÓ
+		//ç§’å¤„ç†å®Œåï¼Œå¯èƒ½å½±å“åˆ°åˆ†é’Ÿï¼Œå¤„ç†åˆ†é’Ÿ
 			if (tmp == 0)
 				_minute -= 1;
 			else
@@ -93,7 +93,7 @@ void Time::operator-(Time& t)
 			_minute = 60 - pos;
 		else
 			_minute = pos - 60;
-		//´¦ÀíĞ¡Ê±£¬·ÖÖÓ´¦Àíºó¿ÉÄÜÓ°Ïìµ½Ğ¡Ê±
+		//å¤„ç†å°æ—¶ï¼Œåˆ†é’Ÿå¤„ç†åå¯èƒ½å½±å“åˆ°å°æ—¶
 			if (tmp == 0)
 				_hour -= 1;
 			else
@@ -112,31 +112,31 @@ int main()
 {
 	{
 		Time t1;
-		Time t2(t1);//ÑéÖ¤¿½±´¹¹Ôìº¯Êı
+		Time t2(t1);//éªŒè¯æ‹·è´æ„é€ å‡½æ•°
 		Time t3(3,30,30);
 		Time t4(12,0,59);
-		cout << "³õÊ¼Ê±¼ä>";
+		cout << "åˆå§‹æ—¶é—´>";
 		t1.Show();
 		
-		cout << "Ê±¼äÏà¼Ó>";
+		cout << "æ—¶é—´ç›¸åŠ >";
 		t3.Show();
-		cout << "1.Ïà¼Óºó>";
+		cout << "1.ç›¸åŠ å>";
 		t1 + t3;
 		t1.Show(); 
 
-		cout << "Ê±¼äÏà¼õ>";
+		cout << "æ—¶é—´ç›¸å‡>";
 		t4.Show();
-		cout << "2.Ïà¼õºó>";
+		cout << "2.ç›¸å‡å>";
 		t1 - t4;
 		t1.Show();
-		cout << "Ê±¼äÏà¼Ó>";
+		cout << "æ—¶é—´ç›¸åŠ >";
 		t4.Show();
 		t1 + t4;
-		cout << "3.Ïà¼Óºó>";
+		cout << "3.ç›¸åŠ å>";
 		t1.Show();
 	}
 
-	//ÔÚ¶ÔÏóÉúÃüÖÜÆÚ½áÊøºó£¬±àÒëÆ÷»á×Ô¶¯µ÷ÓÃÎö¹¹º¯Êı£¬ÏÈ¹¹ÔìµÄºóÎö¹¹
+	//åœ¨å¯¹è±¡ç”Ÿå‘½å‘¨æœŸç»“æŸåï¼Œç¼–è¯‘å™¨ä¼šè‡ªåŠ¨è°ƒç”¨ææ„å‡½æ•°ï¼Œå…ˆæ„é€ çš„åææ„
 	system("pause");
 	return 0;
 }
